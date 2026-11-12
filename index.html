@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ortete Hub Savings</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#008a3c"><link rel="icon" href="icon.svg">
+<style>
+:root{--green:#008a3c;--blue:#0752bd;--gold:#d4af37;--ink:#10213d;--muted:#64748b;--bg:#f4f7fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink)}
+button,input,select{font:inherit}button{cursor:pointer;border:0}
+.wrap{max-width:440px;margin:auto;min-height:100vh;background:#fff;box-shadow:0 0 30px #0001;position:relative;padding-bottom:82px}
+header{padding:18px 20px;background:linear-gradient(130deg,#063c87,#008a3c);color:#fff}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}.mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--green);font-size:22px;border:3px solid var(--gold)}
+.tag{font-size:11px;opacity:.9;margin:4px 0 0 48px}
+main{padding:18px}.welcome{padding:30px 20px;text-align:center;background:linear-gradient(160deg,#063c87,#008a3c);color:#fff;border-radius:0 0 26px 26px}
+.welcome .bigmark{font-size:54px;margin:12px}.welcome h1{font-size:25px;margin:5px}.welcome p{opacity:.9}
+.card{background:#fff;border:1px solid #e5edf5;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 5px 18px #10213d08}
+.balance{background:linear-gradient(120deg,#008a3c,#056b36);color:#fff;border:0}
+.label{font-size:12px;color:var(--muted)}.balance .label{color:#d8f8e5}.amount{font-size:29px;font-weight:800;margin:8px 0}
+.btn{padding:13px 16px;border-radius:12px;background:var(--green);color:#fff;font-weight:700;width:100%;margin:6px 0}
+.btn.secondary{background:#eaf4ff;color:var(--blue)}.btn.outline{background:#fff;color:var(--green);border:1px solid var(--green)}
+.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tile{border:1px solid #e7edf5;border-radius:14px;padding:14px;text-align:left;background:#fff;color:var(--ink)}
+.tile b{display:block;margin:7px 0 3px}.tile span{font-size:23px;color:var(--green)}
+input,select{width:100%;padding:12px;border:1px solid #dbe4ef;border-radius:10px;margin:6px 0 12px;background:#fff}
+h2{font-size:20px;margin:5px 0 14px}h3{font-size:15px;margin:5px 0 10px}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:440px;width:100%;display:flex;background:#fff;border-top:1px solid #e6edf5;padding:8px 4px;z-index:5}
+.nav button{flex:1;background:white;color:#64748b;font-size:11px;padding:8px 2px}.nav button.active{color:var(--green);font-weight:800}.nav span{display:block;font-size:20px;margin-bottom:3px}
+.hide{display:none!important}.note{background:#fff8e6;border:1px solid #f2dfaa;padding:10px;border-radius:10px;font-size:12px;color:#775b0c}
+.tx{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #edf1f6;font-size:13px}.tx:last-child{border:0}
+footer{text-align:center;color:#94a3b8;font-size:11px;padding:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section id="welcome">
+ <div class="welcome"><div class="bigmark">🌍</div><h1>Ortete Hub Savings</h1><b style="color:#f7d66b">Your Money, Your Freedom</b><p>Simple • Secure • Global</p></div>
+ <main><div class="card"><h2>Welcome aboard!</h2><p class="label">Explore your financial world in one place.</p>
+ <button class="btn" onclick="show('register')">Create account</button><button class="btn secondary" onclick="show('login')">Log in</button>
+ <div class="note">Demo prototype only. No real accounts or money are connected.</div></div></main>
+</section>
+<section id="register" class="hide"><header><div class="brand"><div class="mark">🌍</div>Ortete Hub</div><div class="tag">Your Money, Your Freedom</div></header><main><h2>Create account</h2><p class="label">Join Ortete Hub Savings</p>
+<label>Full name</label><input id="fullname" placeholder="Enter your full name">
+<label>Email address</label><input placeholder="you@example.com" type="email">
+<label>Phone number</label><input placeholder="+234 800 000 0000">
+<label>Password</label><input placeholder="Create a password" type="password">
+<button class="btn" onclick="enterApp()">Create demo account</button><button class="btn secondary" onclick="show('welcome')">Back</button><div class="note">Use fictional details only in this demo.</div></main></section>
+<section id="login" class="hide"><header><div class="brand"><div class="mark">🌍</div>Ortete Hub</div></header><main><h2>Log in</h2><label>Email or phone</label><input placeholder="Email or phone"><label>Password</label><input type="password" placeholder="Password"><button class="btn" onclick="enterApp()">Log in to demo</button><button class="btn secondary" onclick="show('welcome')">Back</button></main></section>
+<section id="app" class="hide"><header><div class="brand"><div class="mark">🌍</div>Ortete Hub Savings</div><div class="tag" id="greeting">Welcome</div></header>
+<main>
+<div id="homePage">
+<div class="card balance"><div class="label">Total demo balance</div><div class="amount" id="balance">₦450,750.00</div><div style="font-size:12px">🇳🇬 NGN • Sample funds only</div></div>
+<div class="grid"><button class="tile" onclick="page('convert')"><span>⇄</span><b>Convert currency</b><small class="label">Try a conversion</small></button><button class="tile" onclick="page('rates')"><span>🌐</span><b>Exchange rates</b><small class="label">Sample rates</small></button><button class="tile" onclick="page('savings')"><span>🐷</span><b>My savings</b><small class="label">Goals & progress</small></button><button class="tile" onclick="page('history')"><span>📋</span><b>Transactions</b><small class="label">Demo activity</small></button></div>
+<div class="card"><h3>Recent activity</h3><div class="tx"><span>💚 Savings deposit</span><b>+₦10,000</b></div><div class="tx"><span>🔁 Currency conversion</span><b>Demo</b></div><div class="tx"><span>📥 Money received</span><b>+₦20,000</b></div></div>
+</div>
+<div id="convertPage" class="hide"><h2>Currency converter</h2><div class="card"><label>Amount</label><input id="amt" type="number" value="100000" min="0"><div class="row"><div><label>From</label><select id="from"><option value="NGN">NGN — Naira</option><option value="USD">USD — US Dollar</option><option value="GBP">GBP — Pound</option><option value="EUR">EUR — Euro</option><option value="CAD">CAD — Canadian Dollar</option></select></div><div><label>To</label><select id="to"><option value="USD">USD — US Dollar</option><option value="NGN">NGN — Naira</option><option value="GBP">GBP — Pound</option><option value="EUR">EUR — Euro</option><option value="CAD">CAD — Canadian Dollar</option></select></div></div><button class="btn" onclick="convert()">Calculate demo conversion</button><div class="card"><div class="label">Estimated result (illustrative rate)</div><h2 id="result">—</h2><p id="rate" class="label">Rate: —</p><p class="label">Fee: ₦0.00 (demo) • No transaction takes place.</p></div><div class="note">Rates below are fictional examples—not live exchange rates or an offer to exchange money.</div></div></div>
+<div id="ratesPage" class="hide"><h2>Exchange rates</h2><div class="note">Illustrative rates only; not live market data.</div><div class="card" id="rateList"></div></div>
+<div id="savingsPage" class="hide"><h2>My savings</h2><div class="card balance"><div class="label">Demo savings balance</div><div class="amount">₦300,000.00</div><small>Sample data</small></div><div class="card"><h3>My goals</h3><p>✈️ Travel abroad <b style="float:right">50%</b></p><progress value="50" max="100" style="width:100%"></progress><p>💻 Laptop upgrade <b style="float:right">40%</b></p><progress value="40" max="100" style="width:100%"></progress><p>🛡️ Emergency fund <b style="float:right">70%</b></p><progress value="70" max="100" style="width:100%"></progress><button class="btn outline" onclick="alert('Demo only: savings goal form would open here.')">+ Create savings goal</button></div></div>
+<div id="historyPage" class="hide"><h2>Transactions</h2><div class="card"><div class="tx"><span>Money received</span><b>+₦20,000</b></div><div class="tx"><span>Savings deposit</span><b>+₦10,000</b></div><div class="tx"><span>Currency conversion</span><b>Demo</b></div><div class="tx"><span>Bill payment</span><b>−₦5,000</b></div></div></div>
+<div id="profilePage" class="hide"><h2>Profile & settings</h2><div class="card"><p><b id="profileName">Demo User</b></p><p class="label">Prototype account</p><button class="btn secondary" onclick="show('welcome')">Log out</button></div><div class="note">Identity verification, PIN, biometrics, and real account security are not implemented in this demo.</div></div>
+</main>
+<nav class="nav"><button class="active" onclick="page('home')"><span>⌂</span>Home</button><button onclick="page('convert')"><span>⇄</span>Convert</button><button onclick="page('savings')"><span>🐷</span>Savings</button><button onclick="page('history')"><span>☷</span>Activity</button><button onclick="page('profile')"><span>☻</span>Profile</button></nav>
+</section>
+<footer>ORTETE HUB SAVINGS • PROTOTYPE • YOUR MONEY, YOUR FREEDOM</footer>
+</div>
+<script>
+const screens=['welcome','register','login','app'];
+function show(id){screens.forEach(s=>document.getElementById(s).classList.toggle('hide',s!==id));}
+function enterApp(){let n=document.getElementById('fullname').value.trim()||'Demo User';document.getElementById('greeting').textContent='Welcome, '+n+'!';document.getElementById('profileName').textContent=n;show('app');page('home')}
+function page(p){['home','convert','rates','savings','history','profile'].forEach(x=>document.getElementById(x+'Page').classList.toggle('hide',x!==p));document.querySelectorAll('.nav button').forEach((b,i)=>b.classList.toggle('active',['home','convert','savings','history','profile'].indexOf(p)===i));if(p==='rates')buildRates()}
+const rates={NGN:1,USD:1500,GBP:1900,EUR:1650,CAD:1100};const names={NGN:'Nigerian Naira',USD:'US Dollar',GBP:'British Pound',EUR:'Euro',CAD:'Canadian Dollar'};
+function convert(){let a=Number(document.getElementById('amt').value),f=document.getElementById('from').value,t=document.getElementById('to').value;if(!a||a<0){alert('Enter a valid amount');return}let val=a*rates[f]/rates[t];document.getElementById('result').textContent=new Intl.NumberFormat('en',{maximumFractionDigits:2}).format(val)+' '+t;document.getElementById('rate').textContent='1 '+f+' = '+(rates[f]/rates[t]).toLocaleString('en',{maximumFractionDigits:4})+' '+t+' (illustrative)'}
+function buildRates(){document.getElementById('rateList').innerHTML=Object.keys(rates).map(c=>'<div class="tx"><span>'+c+' — '+names[c]+'</span><b>₦'+rates[c].toLocaleString()+'</b></div>').join('')}
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
+</body></html>
